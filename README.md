@@ -14,11 +14,10 @@ To facilitate real-time analytics, personalized recommendations, and efficient b
 
 ## Architecture and Data Flow
 ![kafka-ingestion](kafka-ingestion.jpg)
-The central source of truth for product data. A dedicated products table contains a __updated_timestamp__ column, which is crucial for identifying incremental changes.
-A Python-based Producer Application queries this database to fetch records that have been newly added or updated since the last run.
 
 **PostgreSQL Database:**
-A Python Producer Application will query this database to extract data in defined batches. This extraction can involve a full table scan or filtered queries to get the desired dataset for each batch.
+The central source of truth for product data. A dedicated products table contains a __updated_timestamp__ column, which is crucial for identifying incremental changes.
+A Python-based Producer Application queries this database to fetch records that have been newly added or updated since the last run.
 
 **Kafka Producer:**
 This Python application reads the incremental updates from PostgreSQL.
